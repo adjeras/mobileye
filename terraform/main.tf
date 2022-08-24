@@ -89,3 +89,20 @@ resource "aws_instance" "mobileye_node1" {
     Name = "mobileye-node"
   }
 }
+
+resource "aws_instance" "mobileye_node2" {
+  instance_type          = "t2.micro"
+  ami                    = data.aws_ami.server_ami.id
+  key_name               = aws_key_pair.amir_auth.id
+  vpc_security_group_ids = [aws_security_group.amir_sg.id]
+  subnet_id              = aws_subnet.amir_public_subnet.id
+  user_data              = file("userdata2.tpl")
+
+  root_block_device {
+    volume_size = 10
+  }
+
+  tags = {
+    Name = "mobileye-node2"
+  }
+}
