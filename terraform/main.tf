@@ -106,3 +106,56 @@ resource "aws_instance" "mobileye_node2" {
     Name = "mobileye-node2"
   }
 }
+
+
+resource "aws_ecs_cluster" "cluster" {
+  name = "mobileye-ecs-cluster"
+
+  capacity_providers = ["FARGATE_SPOT", "FARGATE"]
+
+  default_capacity_provider_strategy {
+    capacity_provider = "FARGATE_SPOT"
+  }
+
+  setting {
+    name  = "containerInsights"
+    value = "disabled"
+  }
+}
+
+module "ecs-fargate" {
+  source  = "cn-terraform/ecs-fargate/aws"
+  version = "2.0.39"
+
+  name_prefix        = "ecs-fargate-example"
+  vpc_id             = aws_vpc.amir_vpc.id
+  private_subnet_ids = aws_subnet.amir_public_subnet
+
+  cluster_id = aws_ecs_cluster.cluster.id
+
+  task_container_image   = "centos"
+  task_definition_cpu    = 256
+  task_definition_memory = 512
+
+  task_container_port             = 80
+  task_container_assign_public_ip = true
+
+  load_balanced = false
+
+  target_groups = [
+    {
+      target_group_name = "tg-fargate-example"
+      container_port    = 80
+    }
+  ]
+
+  health_check = {
+    port = "traffic-port"
+    path = "/"
+  }
+
+  tags = {
+    Environment = "test"
+    Project     = "Test"
+  }
+}
