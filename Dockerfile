@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD ["python -m http.server --directory /tmp/"]
+CMD ["python", "-m", "http.server", "--directory", "/tmp/"]
