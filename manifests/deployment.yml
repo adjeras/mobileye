@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: mobileyeapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mobileyeapp
+  template:
+    metadata:
+      labels:
+        app: mobileyeapp
+    spec:
+      containers:
+        - name: mobileyeapp
+          image: 394916145019.dkr.ecr.eu-central-1.amazonaws.com/mobileye-repo
+          ports:
+          - containerPort: 5000
