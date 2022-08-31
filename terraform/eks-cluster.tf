@@ -5,8 +5,8 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.22"
 
-  vpc_id     = aws_vpc.amir_vpc.id
-  subnet_ids = aws_subnet.amir_public_subnet
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
 
   eks_managed_node_group_defaults = {
     ami_type = "AL2_x86_64"
@@ -32,7 +32,7 @@ module "eks" {
       EOT
 
       vpc_security_group_ids = [
-        aws_security_group.amir_sg.id
+	aws_security_group.node_group_one.id
       ]
     }
 
@@ -50,7 +50,7 @@ module "eks" {
       EOT
 
       vpc_security_group_ids = [
-        aws_security_group.amir_sg.id
+	aws_security_group.node_group_two.id
       ]
     }
   }

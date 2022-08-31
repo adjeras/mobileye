@@ -23,6 +23,17 @@ pipeline {
             }
         }
         
+        stage ('Terraform init') {
+            steps {
+                sh "pwd"
+                dir('terraform'){
+                    sh "pwd"
+                    sh label: '', script: 'terraform plan -target="aws_ecr_repository.mobileye-repository"'
+                }
+                sh "pwd"
+            }
+        }
+
         stage ('Docker build') {
             steps {
                 script {
@@ -35,7 +46,8 @@ pipeline {
             steps {
                 script {
                     sh 'aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 394916145019.dkr.ecr.eu-central-1.amazonaws.com'
-                    sh 'docker push 394916145019.dkr.ecr.eu-central-1.amazonaws.com/mobileye-repo'
+                    #sh 'docker push 394916145019.dkr.ecr.eu-central-1.amazonaws.com/mobileye-repo'
+                    sh 'docker push 394916145019.dkr.ecr.eu-central-1.amazonaws.com/mobileye-images'
                 }
             }
         }

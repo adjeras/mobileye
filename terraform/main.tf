@@ -6,6 +6,19 @@ resource "aws_vpc" "amir_vpc" {
   }
 }
 
+data "aws_availability_zones" "available" {}
+
+resource "aws_subnet" "mobileye_public_subnet" {
+  vpc_id                  = aws_vpc.amir_vpc.id
+  cidr_block              = "10.0.2.0/24"
+  map_public_ip_on_launch = true
+  availability_zone       = "eu-central-1a"
+
+  tags = {
+    Name = "dev-public"
+  }
+}
+
 resource "aws_subnet" "amir_public_subnet" {
   vpc_id                  = aws_vpc.amir_vpc.id
   cidr_block              = "10.0.1.0/24"
@@ -25,6 +38,14 @@ resource "aws_internet_gateway" "amir_internet_gateway" {
   }
 }
 
+resource "aws_route_table" "mobileye_public_rt" {
+  vpc_id = aws_vpc.amir_vpc.id
+
+  tags = {
+    Name = "dev-public-rt"
+  }
+}
+
 resource "aws_route_table" "amir_public_rt" {
   vpc_id = aws_vpc.amir_vpc.id
 
@@ -33,18 +54,40 @@ resource "aws_route_table" "amir_public_rt" {
   }
 }
 
-
-
 resource "aws_route" "default_route" {
   route_table_id         = aws_route_table.amir_public_rt.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.amir_internet_gateway.id
 }
 
+resource "aws_route_table_association" "mobileye_public_association" {
+  subnet_id      = aws_subnet.mobileye_public_subnet.id
+  route_table_id = aws_route_table.mobileye_public_rt.id
+}
 
 resource "aws_route_table_association" "amir_public_association" {
   subnet_id      = aws_subnet.amir_public_subnet.id
   route_table_id = aws_route_table.amir_public_rt.id
+}
+
+resource "aws_security_group" "mobileye_sg" {
+  name        = "mobileye_sg"
+  description = " dev security group"
+  vpc_id      = aws_vpc.amir_vpc.id
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_security_group" "amir_sg" {
@@ -66,7 +109,6 @@ resource "aws_security_group" "amir_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
 
 resource "aws_key_pair" "amir_auth" {
   key_name   = "amirkey"
@@ -106,7 +148,6 @@ resource "aws_instance" "mobileye_node2" {
     Name = "mobileye-node2"
   }
 }
-
 
 locals {
   cluster_name = "mobileye-eks-cluster"
