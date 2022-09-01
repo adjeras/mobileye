@@ -7,7 +7,7 @@ pipeline {
     }
     
     environment {
-        registry = "394916145019.dkr.ecr.eu-central-1.amazonaws.com/mobileye-repo"
+        registry = "394916145019.dkr.ecr.eu-central-1.amazonaws.com/mobileye-images"
     }
     
     stages {
