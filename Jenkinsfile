@@ -53,15 +53,17 @@ pipeline {
             }
         }
 
-        stage ('Update kubeconfig') {
+        stage ('K8S delete deployment') {
             steps {
-                sh "aws eks --region eu-central-1 update-kubeconfig --name mobileye-eks-cluster"
+                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '']]) {
+                    sh "kubectl delete deployment mobileyeapp"
+                }
             }
-        }
+        }        
 
         stage ('K8S Deploy') {
             steps {
-                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '']]) {
+                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8Snew', namespace: '', serverUrl: '']]) {
                     sh "kubectl apply -f manifests/deployment.yml"
                 }
             }
