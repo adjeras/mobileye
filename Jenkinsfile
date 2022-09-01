@@ -55,7 +55,7 @@ pipeline {
 
         stage ('K8S delete deployment') {
             steps {
-                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '']]) {
+                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8Snew', namespace: '', serverUrl: '']]) {
                     sh "kubectl delete deployment mobileyeapp"
                 }
             }
