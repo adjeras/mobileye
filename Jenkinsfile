@@ -56,7 +56,6 @@ pipeline {
         stage ('Update kubeconfig') {
             steps {
                 sh "aws eks --region eu-central-1 update-kubeconfig --name mobileye-eks-cluster"
-                }
             }
         }
 
