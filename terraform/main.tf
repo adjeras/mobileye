@@ -116,7 +116,7 @@ resource "aws_key_pair" "amir_auth" {
 }
 
 resource "aws_instance" "mobileye_node1" {
-  instance_type          = "t2.micro"
+  instance_type          = "t2.medium"
   ami                    = data.aws_ami.server_ami.id
   key_name               = aws_key_pair.amir_auth.id
   vpc_security_group_ids = [aws_security_group.amir_sg.id]
