@@ -52,6 +52,14 @@ pipeline {
                 }
             }
         }
+
+        stage ('Update kubeconfig') {
+            steps {
+                sh "aws eks --region eu-central-1 update-kubeconfig --name mobileye-eks-cluster"
+                }
+            }
+        }
+
         stage ('K8S Deploy') {
             steps {
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8S', namespace: '', serverUrl: '']]) {
