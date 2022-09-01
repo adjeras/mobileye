@@ -28,8 +28,8 @@ pipeline {
                 sh "pwd"
                 dir('terraform'){
                     sh "pwd"
-                    //sh label: '', script: 'terraform plan --auto-approve -target="aws_ecr_repository.mobileye-repository"'
-                    sh 'terraform plan'
+                    sh label: '', script: 'terraform plan -target="aws_ecr_repository.mobileye-repository"'
+                    //sh label: '', script: 'terraform apply -auto-approve -target="aws_ecr_repository.mobileye-repository"'
                 }
                 sh "pwd"
             }
