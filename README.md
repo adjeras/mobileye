@@ -60,27 +60,27 @@ Commands & more
 
 4. Execute the creation of the first node (the Jenkins node) using Terraform module - Some relevant commands for this step:
 
-which terraform
-terraform --version
-mkdir terraform
-cd terraform
-vim main.tf
-vim userdata.tpl # this is where I execute the post install commands
+**which terraform**
+**terraform --version**
+**mkdir terraform**
+**cd terraform**
+**vim main.tf**
+**vim userdata.tpl** # this is where I execute the post install commands
 
-ls -l ~/.ssh/amirkey.pub
+**ls -l ~/.ssh/amirkey.pub**
 
-terraform init
-terraform plan
-terraform apply -target="aws_instance.mobileye_node1" -auto-approve
+**terraform init**
+**terraform plan**
+**terraform apply -target="aws_instance.mobileye_node1" -auto-approve**
 
 
 
-git status
-git add *
-git commit -m "create Terraform ec2 module"
-git pull --rebase
-git push origin master
-git push origin main
+**git status**
+**git add <filename>**
+**git commit -m "create Terraform ec2 module"**
+**git pull --rebase**
+**git push origin master**
+**git push origin main**
 
 5. Once Jenkins node was ready I logged into it using PuTTY (and the private key I generated) and from this point I started working only on the Jenkins node.
 
