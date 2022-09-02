@@ -31,9 +31,9 @@ URL to see the text file under /tmp dir
 =======================================
 
 ```bash
-<a href=http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com</a>
+http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com
 
-<a href=http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com/mobileye.txt</a>
+http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com/mobileye.txt
 ```
 
 
@@ -55,7 +55,7 @@ Installation of the first ec2 node that includes Jenkins app using Terraform:
 I started by creating a repository named mobileye on my github account.
 
 I cloned it to my PC using my 'Visual Studio Code' terminal with the following command:
-git clone git@github.com:adjeras/mobileye.git
+# git clone git@github.com:adjeras/mobileye.git
 
 I installed AWS and Terraform extensions (VSC) and executed the creation of the first node on AWS. this is the Jenkins node.
 
