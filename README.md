@@ -1,5 +1,5 @@
-About
-=======
+The exercise
+============
 General Instructions:
 -	Create an empty git repository. In it, create a simple text file with the text "Hello Mobileye!".
 -	If needed, you can create additional git repositories. 
@@ -26,12 +26,15 @@ The task:
   8.	Provide a deployment solution to the application on the cluster that was just created. The application must be accessible from the browser on port 80. 
 
 
-URL to see the the text file under /tmp dir 
-===========================================
+URL to see the text file under /tmp dir 
+=======================================
 
-http://18.196.140.240
+```bash
 http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com
+
 http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com/mobileye.txt
+```
+
 
 How To Use
 ==========
