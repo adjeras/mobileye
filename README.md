@@ -50,6 +50,7 @@ http://18.184.209.205:8080/
 Commands & more
 ---------------
 
+** git clone git@github.com:adjeras/mobileye.git **
 ```bash
 Installation of the first ec2 node that includes Jenkins app using Terraform:
 I started by creating a repository named mobileye on my github account.
