@@ -80,7 +80,7 @@ Commands & more
 **git commit -m "create Terraform ec2 module"**\
 **git pull --rebase**\
 **git push origin master**\
-**git push origin main**\
+**git push origin main**
 
 
 5. Once Jenkins node was ready I logged into it using PuTTY (and the private key I generated) and from this point I started working only on the Jenkins node.
