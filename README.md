@@ -1,5 +1,5 @@
-The exercise
-============
+The assignment
+==============
 ```bash
 General Instructions:
 -	Create an empty git repository. In it, create a simple text file with the text "Hello Mobileye!".
@@ -31,14 +31,14 @@ URL to see the text file under /tmp dir
 =======================================
 
 ```bash
-http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com
+<a href=http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com</a>
 
-http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com/mobileye.txt
+<a href=http://a84688956b5354f86aac5e39e02279d7-928147059.eu-central-1.elb.amazonaws.com/mobileye.txt</a>
 ```
 
 
-How To Use
-==========
+How to access Jenkins to run the pipeline
+=========================================
 
 ```bash
 1. Login to Jenkins by using the following URL:
@@ -47,26 +47,21 @@ http://18.184.209.205:8080/
 2. Run the "mobileyePipelineJob" job.
 ```
 
-HELP
-----
+Commands & more
+---------------
 
 ```bash
-% docker run -v `pwd`:/tmp/screenshot adjeras/docker_capture_web_otorio
-usage: screenshot.py [-h] [-w WINDOW_SIZE] [--ua USER_AGENT] [--wait WAIT]
-                     [-v] [--vv]
-                     url filename
+Installation of the first ec2 node that includes Jenkins app using Terraform:
+I started by creating a repository named mobileye on my github account.
 
-positional arguments:
-  url              specify URL
-  filename         specify capture image filename
+I cloned it to my PC using my 'Visual Studio Code' terminal with the following command:
+git clone git@github.com:adjeras/mobileye.git
 
-optional arguments:
-  -h, --help       show this help message and exit
-  -w WINDOW_SIZE   specify window size like 1200x800
-  --ua USER_AGENT  specify user-agent
-  --wait WAIT      specify wait seconds after scroll
-  -v               set LogLevel to INFO
-  --vv             set LogLevel to DEBUG
+I installed AWS and Terraform extensions (VSC) and executed the creation of the first node on AWS. this is the Jenkins node.
+
+Once Jenkins node was ready I logged into it using Putty (and the private key I generated).
+
+From this point I started working only on the Jenkins node.
 ```
 
 How To Build
