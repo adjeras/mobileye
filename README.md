@@ -59,7 +59,7 @@ Commands & more
 3. Installing AWS and Terraform extensions (VSC).
 
 4. Execute the creation of the first node (the Jenkins node) using Terraform module - Some relevant commands for this step:
-
+```
 **which terraform**
 **terraform --version**
 **mkdir terraform**
@@ -81,7 +81,7 @@ Commands & more
 **git pull --rebase**
 **git push origin master**
 **git push origin main**
-
+```
 5. Once Jenkins node was ready I logged into it using PuTTY (and the private key I generated) and from this point I started working only on the Jenkins node.
 
 aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 394916145019.dkr.ecr.eu-central-1.amazonaws.com
