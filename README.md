@@ -50,13 +50,13 @@ http://18.184.209.205:8080/
 Commands & more
 ---------------
 
-** git clone git@github.com:adjeras/mobileye.git **
+**git clone git@github.com:adjeras/mobileye.git**
 ```bash
 Installation of the first ec2 node that includes Jenkins app using Terraform:
 I started by creating a repository named mobileye on my github account.
 
 I cloned it to my PC using my 'Visual Studio Code' terminal with the following command:
-** git clone git@github.com:adjeras/mobileye.git **
+**git clone git@github.com:adjeras/mobileye.git**
 
 I installed AWS and Terraform extensions (VSC) and executed the creation of the first node on AWS. this is the Jenkins node.
 
