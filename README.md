@@ -85,14 +85,11 @@ Commands & more
 
 5. Once Jenkins node was ready I logged into it using PuTTY (and the private key I generated) and from this point I started working only on the Jenkins node.
 
-aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 394916145019.dkr.ecr.eu-central-1.amazonaws.com
-eksctl get cluster --name mobileye-eks-cluster --region eu-central-1
+**aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 394916145019.dkr.ecr.eu-central-1.amazonaws.com**\
+**eksctl get cluster --name mobileye-eks-cluster --region eu-central-1**
 
 
 
 How To Build
 ===========
 
-```bash
-./build
-```
