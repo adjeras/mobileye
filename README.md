@@ -1,5 +1,6 @@
 The exercise
 ============
+```bash
 General Instructions:
 -	Create an empty git repository. In it, create a simple text file with the text "Hello Mobileye!".
 -	If needed, you can create additional git repositories. 
@@ -24,7 +25,7 @@ The task:
   6.	Create a job in the CI server that will run the CI script.
   7.	Create a container orchestrator cluster using the IaaC module from step 2.c 
   8.	Provide a deployment solution to the application on the cluster that was just created. The application must be accessible from the browser on port 80. 
-
+```
 
 URL to see the text file under /tmp dir 
 =======================================
