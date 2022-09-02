@@ -50,20 +50,44 @@ http://18.184.209.205:8080/
 Commands & more
 ---------------
 
-**git clone git@github.com:adjeras/mobileye.git**
-```bash
-Installation of the first ec2 node that includes Jenkins app using Terraform:
-I started by creating a repository named mobileye on my github account.
+-	Installation steps of the first AWS ec2 node that includes the Jenkins app using Terraform:
+1. Creating a repository named mobileye on my github account.
 
-I cloned it to my PC using my 'Visual Studio Code' terminal with the following command:
+2. Cloned the repo to my PC using my VSC (Visual Studio Code) terminal with the following command:
 **git clone git@github.com:adjeras/mobileye.git**
 
-I installed AWS and Terraform extensions (VSC) and executed the creation of the first node on AWS. this is the Jenkins node.
+3. Installing AWS and Terraform extensions (VSC).
 
-Once Jenkins node was ready I logged into it using Putty (and the private key I generated).
+4. Execute the creation of the first node (the Jenkins node) using Terraform module - Some relevant commands for this step:
 
-From this point I started working only on the Jenkins node.
-```
+which terraform
+terraform --version
+mkdir terraform
+cd terraform
+vim main.tf
+vim userdata.tpl # this is where I execute the post install commands
+
+ls -l ~/.ssh/amirkey.pub
+
+terraform init
+terraform plan
+terraform apply -target="aws_instance.mobileye_node1" -auto-approve
+
+
+
+git status
+git add *
+git commit -m "create Terraform ec2 module"
+git pull --rebase
+git push origin master
+git push origin main
+
+5. Once Jenkins node was ready I logged into it using PuTTY (and the private key I generated) and from this point I started working only on the Jenkins node.
+
+aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 394916145019.dkr.ecr.eu-central-1.amazonaws.com
+eksctl get cluster --name mobileye-eks-cluster --region eu-central-1
+
+
 
 How To Build
 ===========
