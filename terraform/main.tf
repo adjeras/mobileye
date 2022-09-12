@@ -4,6 +4,9 @@ resource "aws_vpc" "amir_vpc" {
   tags = {
     Name = "dev"
   }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 data "aws_availability_zones" "available" {}
@@ -17,6 +20,9 @@ resource "aws_subnet" "mobileye_public_subnet" {
   tags = {
     Name = "dev-public"
   }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_subnet" "amir_public_subnet" {
@@ -28,6 +34,9 @@ resource "aws_subnet" "amir_public_subnet" {
   tags = {
     Name = "dev-public"
   }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_internet_gateway" "amir_internet_gateway" {
@@ -35,6 +44,9 @@ resource "aws_internet_gateway" "amir_internet_gateway" {
 
   tags = {
     Name = "dev-igw"
+  }
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
@@ -44,6 +56,9 @@ resource "aws_route_table" "mobileye_public_rt" {
   tags = {
     Name = "dev-public-rt"
   }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route_table" "amir_public_rt" {
@@ -52,22 +67,34 @@ resource "aws_route_table" "amir_public_rt" {
   tags = {
     Name = "dev-public-rt"
   }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route" "default_route" {
   route_table_id         = aws_route_table.amir_public_rt.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.amir_internet_gateway.id
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route_table_association" "mobileye_public_association" {
   subnet_id      = aws_subnet.mobileye_public_subnet.id
   route_table_id = aws_route_table.mobileye_public_rt.id
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route_table_association" "amir_public_association" {
   subnet_id      = aws_subnet.amir_public_subnet.id
   route_table_id = aws_route_table.amir_public_rt.id
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_security_group" "mobileye_sg" {
@@ -87,6 +114,9 @@ resource "aws_security_group" "mobileye_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
@@ -108,11 +138,17 @@ resource "aws_security_group" "amir_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_key_pair" "amir_auth" {
   key_name   = "amirkey"
   public_key = file("~/.ssh/amirkey.pub")
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_instance" "mobileye_node1" {
@@ -129,6 +165,9 @@ resource "aws_instance" "mobileye_node1" {
 
   tags = {
     Name = "mobileye-node"
+  }
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
