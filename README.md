@@ -1,5 +1,5 @@
 The assignment
-==============
+=================
 ```bash
 General Instructions:
 -	Create an empty git repository. In it, create a simple text file with the text "Hello Mobileye!".
